@@ -1,0 +1,14 @@
+Your repositories에 들어간다.
+생성되어 있는 repository를 들어간다. 내 경우엔 ex) doyoung
+생성한 1day1commit 파일에 들어간다.
+Create new file을 클릭하면 doyoung/ 1day1commit/ (name your file)이 뜬다.
+name your file에 오늘의 날짜를 적는다. doyoung/ 1day1commit/ 20191223 커밋방법
+공부한 내용을 적고 밑으로 내려 Commit new file을 누른다.
+그러면 20191223이라는 파일이 생성된다.
+그 파일의 주소를 복사한다.
+Today-I-Learned에 들어간다.
+README.md에 편집하기를 킨다.
+그러면 우리 승환님께서 날짜를 적어놨을 것이다.
+거기에 [공부한 내용 - 도영](복사한 주소)를 쓴다.
+밑으로 내려가 Commit changes를 누른다.
+끝
