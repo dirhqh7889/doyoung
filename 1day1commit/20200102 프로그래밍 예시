@@ -1,0 +1,107 @@
+구구단 2단 만들기
+def gugu(n):                     => 함수 만들기
+    result = []                    => 연속된 자료형 이니까 리스트
+    i = 1                            
+    while i < 10:                 => 반복이 많기 때문에 while문 사용
+        result.append(i * 2)     => 리스트에 요소를 추가하는 append 내장 함수 사용
+        i = i + 1
+    return result
+
+print(gugu(2))
+[2, 4, 6, 8, 10, 12, 14, 16, 18]
+
+10 미만의 자연수에서 3과 5의 배수를 구하면 3, 5, 6, 9이다. 이들의 총합은 23이다.
+1000 미만의 자연수에서 3의 배수와 5의 배수의 총합을 구하라.
+
+result = 0                                  
+for n in range(1, 1000):
+    if n % 3 == 0 or n % 5 == 0:
+        result += n
+
+print(result)
+233168
+
+게시판 페이징하기 
+
+def getTotalPage(m, n):
+    if m % n == 0:
+        return m // n
+    else:
+        return m // n + 1
+
+print(getTotalPage(5, 10))
+print(getTotalPage(15, 10))
+print(getTotalPage(25, 10))
+print(getTotalPage(30, 10))
+
+1
+2
+3
+3
+
+간단한 메모장 만들기
+
+1. 메모 추가
+python memo.py -a "Life is too short" => memo.py 작성할 파이썬 프로그램 이름 -a 프로그램의 실행 옵션
+                                                     "Life is too short" 추가할 메모 내용
+
+import sys                       => sys.argv 프로그램을 실행할 때 입력된 값을 읽어 들일 수 있는 파이썬 라이브러리
+                                         sys.argv[1] = 프로그램 실행 옵션 값 sys.argv[2] = 메모 내용
+option = sys.argv[1]
+memo = sys.argv[2]
+
+print(option)
+print(memo)
+
+결과값)
+C:\doit>python memo.py -a "Life is too short"
+-a
+Life is too short
+
+2. 메모 쓰기
+
+import sys                         
+
+option = sys.argv[1]
+
+if option == '-a':                  => 옵션이 -a인 경우에만 memo 값을 읽어 memo.txt 파일에 그 값을 쓰도록 작성
+    memo = sys.argv[2]
+    f = open('memo.txt', 'a')     => 파일 열기 모드 a - 한 줄씩 추가되어야 되기 때문
+    f.write(memo)
+    f.write('\n')                     => 메모 추가 때마다 다음 줄에 저장되도록
+    f.close()
+
+결과값)
+C:\doit>python memo.py -a "Life is too short"  
+C:\doit>python memo.py -a "You need python"
+
+C:\doit>type memo.txt
+Life is too short
+You need python
+
+3. 메모 출력
+python memo.py -v => 메모 추가는 -a 옵션 사용 메모 출력은 -v 사용
+
+import sys
+
+option = sys.argv[1]
+
+if option == '-a':
+    memo = sys.argv[2]
+    f = open('memo.txt', 'a')
+    f.write(memo)
+    f.write('\n')
+    f.close()
+elif option == '-v':              => 옵션으로 -v가 들어온 경우 memo.txt 파일을 읽어서 출력
+    f = open('memo.txt')
+    memo = f.read()
+    f.close()
+    print(memo)
+
+결과 값)
+C:\doit>python memo.py -v
+Life is too short
+You need python
+
+
+
