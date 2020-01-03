@@ -1,0 +1,40 @@
+백준 
+사칙연산에서 어려웠던 문제
+2588번 풀이
+a = int(input("첫번째"))
+b = int(input("두번째"))
+print("%d\n%d\n%d\n%d" % ((a * (b % 10)), (a * ((b % 100)//10)), (a * (b//100)), (a * b)))  
+=> 숫자형은 자리수에 맞춰서 못 부르기 때문에 문자형으로 바꾸고 뽑아서 숫자형으로 바꾼뒤 곱해야 한다.
+
+if문에서 어려웠던 문제
+2884번 풀이
+H, M = list(map(int, input().split()))
+
+alarm = H * 60 + M-45                     시간에 60분을 곱해서 전체 분으로 계산했을 때
+if(alarm < 0):                            0보다 작게 나오면 H가 0이란 소리기 때문에
+    alarm = 23 * 60 + 60 +alarm           23을 곱하고 60분을 더해서 시간을 맞춰준다
+
+alarm_H = alarm // 60                     시간은 나눈 몫이고
+alarm_M = alarm % 60                      분은 나눈 나머지 이다.
+
+print('%d %d' % (alarm_H, alarm_M))
+
+10817번 풀이
+
+a, b, c = map(int, input().split(' ')) => split('') ''사이에 띄어쓰기를 하지 않아 계속해서 에러 발생 했었다. 주의 할 것.
+if a >= b:
+    if a >= c:
+        if b >= c:
+            print(b)
+        else:
+            print(c)
+    else:
+        print(a)
+else:
+    if b >= c:
+        if a >= c:
+            print(a)
+        else:
+            print(c)
+    else:
+        print(b)
