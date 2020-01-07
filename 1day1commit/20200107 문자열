@@ -1,0 +1,122 @@
+15596번
+
+def solve(num_lsit):
+    result = 0
+    for num in num_list:
+        result += num
+    return result
+
+11654번
+a = input()
+print(ord(a))
+
+11720번
+a = int(input())
+b = list(input())
+result = 0
+for i in b:
+    result += int(i)
+print(result)
+
+10809번
+word = input()
+
+alphabet = {'a':-1, 'b':-1, 'c':-1,'d':-1,'e':-1,'f':-1,'g':-1,'h':-1,'i':-1,'j':-1,'k':-1,'l':-1,
+           'm':-1,'n':-1,'o':-1,'p':-1,'q':-1,'r':-1,'s':-1,'t':-1,'u':-1,'v':-1,'w':-1,'x':-1,'y':-1,'z':-1}
+
+for i in word:
+    alphabet[i] = word.index(i)
+
+output = ' '
+for __, value in alphabet.items():
+    output += str(value)+' '
+print(output)
+
+2675번
+T = int(input())
+S = dict()
+for _ in range(T):
+    repeat, words = input().split()
+    output = ''
+    for word in words:
+        output += word * int(repeat)
+    print(output)
+
+1157번
+words = input().lower()
+words_list = list(set(words))
+word_count = list()
+
+for i in words_list:
+    count = words.count(i)
+    word_count.append(count)
+
+if(word_count.count(max(word_count)) >= 2):
+    print('?')
+else:
+    print(words_list[(word_count.index(max(word_count)))].upper())
+
+1152번
+a = input().split()
+print(len(a))
+
+2908번
+a, b = input().split()
+reverse_a = int(a[::-1])
+reverse_b = int(b[::-1])
+print(max(reverse_a, reverse_b))
+
+5622번
+a = input()
+b = []
+
+for i in a:
+    if i in['A','B','C']:
+        b.append(3)
+    elif i in['D','E','F']:
+        b.append(4)
+    elif i in['G', 'H', 'I']:
+        b.append(5)
+    elif i in['J','K','L']:
+        b.append(6)
+    elif i in['M','N','O']:
+        b.append(7)
+    elif i in['P','Q','R','S']:
+        b.append(8)
+    elif i in['T','U','V']:
+        b.append(9)
+    elif i in['W','X','Y','Z']:
+        b.append(10)
+    else:
+        b.append(11)
+print(sum(b))
+
+2941번
+a = ['c=', 'c-', 'dz=', 'd-', 'lj', 'nj', 's=', 'z=']
+alpha = input()
+
+for t in a:
+    alpha = alpha.replace(t, '*')
+
+print(len(alpha))
+
+1316번
+cnt = 0;
+N = int(input())
+for i in range(N):
+    check = [0] * 26
+    flag = 1;
+    word = input()
+    n = len(word)
+
+    for j in range(n):
+        if check[ord(word[j]) - 97]:
+            if word[j] != word[j - 1]:
+                flag = 0;
+                break
+        check[ord(word[j]) - 97] = 1
+    check = [0] * 26
+
+    if flag:
+        cnt += 1
+print(cnt)
