@@ -101,22 +101,8 @@ for t in a:
 print(len(alpha))
 
 1316번
-cnt = 0;
-N = int(input())
-for i in range(N):
-    check = [0] * 26
-    flag = 1;
+cnt = 0
+for i in range(int(input())):
     word = input()
-    n = len(word)
-
-    for j in range(n):
-        if check[ord(word[j]) - 97]:
-            if word[j] != word[j - 1]:
-                flag = 0;
-                break
-        check[ord(word[j]) - 97] = 1
-    check = [0] * 26
-
-    if flag:
-        cnt += 1
+    cnt += list(word) == sorted(word, key = word.find) => sorted에서 key=word.find로 설정하면 "a"부터 정렬되는 것이 아니라, word에서 찾아지는 character 순서대로 정렬된다.
 print(cnt)
