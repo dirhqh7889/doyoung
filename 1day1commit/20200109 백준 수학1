@@ -1,0 +1,86 @@
+1712번
+
+a, b, c = list(map(int, input().split()))
+d = 0
+
+if(c <= b):
+    d = -1
+else:
+    d = a // (c - b) + 1
+print(d)
+
+2839번
+
+inp = int(input())
+box = 0
+while True:                                      => 무한 루프 생성
+    if(inp % 5) == 0:                           => if 문을 넣어 inp 값이 5로 나눠지면 box내 inp값을 5로 나눈 몫을 넣고 프린트하고 종료
+        box = box + (inp//5)                  
+        print(box)
+        break
+    inp = inp - 3                                => 그렇지 않다면 inp값을 3 감소시키고 box값을 하나 증가
+    box += 1
+    if inp < 0:                                    => inp값이 0보다 작아지면 -1을 출력
+        print("-1")
+        break
+
+2292번
+
+n = int(input())
+first = 1
+plus = 6
+room = 1
+if n == 1:
+    print(1)
+else:
+    while True:
+        first = first + plus
+        room += 1
+        if n <= first:
+            print(room)
+            break
+        plus += 6
+        
+규칙 = 수열을 이룬다. ex) 1, 7, 19, 37        
+
+2869번
+
+a, b, c = map(int, input().split())
+t = 0
+while True:
+    t += 1
+    if a*t - b*(t-1) >= c:
+        break
+print(t)
+
+
+10250번
+
+a = int(input())
+
+for i in range(a):
+    h, w, n = map(int, input().split())
+    a = n % h
+    b = n // h+1
+    if a == 0:
+        a = h
+        b -= 1
+    print(a*100 + b)
+
+1011번
+
+t = int(input())
+for i in range(t):
+    a, b = map(int, input().split())
+    c = b - a
+    num = 1
+    while True:
+        if num ** 2 <= c < (num +1) ** 2:
+            break
+        num += 1
+    if num ** 2 == c:
+        print((num * 2) -1)
+    elif num ** 2 < c <= num ** 2 + num:
+        print(num + 2)
+    else:
+        print((num * 2) + 1)
