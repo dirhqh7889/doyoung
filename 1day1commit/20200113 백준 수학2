@@ -1,0 +1,175 @@
+1978번
+
+Case = int(input())
+num_list = list(map(int, input().split(' ')))
+
+res_counting = 0
+
+for i in num_list:
+    cnt = 0
+    if(i == 1):
+        continue
+    for j in range(2, i + 1):
+        if(i % j == 0):
+            cnt += 1
+    if(cnt == 1):
+        res_counting += 1
+print(res_counting)
+
+2581번
+
+a = int(input())
+b = int(input())
+result = []
+
+for i in range(a, b+1):
+    cnt = 0
+    if (i == 1):
+        continue
+    for j in range(2, i + 1):
+        if(i % j == 0):
+            cnt += 1
+    if(cnt == 1):
+        result.append(i)
+if len(result) != 0:
+    print(sum(result))
+    print(min(result))
+else:
+    print("-1")
+
+1929번
+내가 한거 (시간 초과)
+a, b = list(map(int, input().split()))
+result = []
+
+for i in range(a, b+1):
+    cnt = 0
+    if (i == 1):
+        continue
+    for j in range(2, i + 1):
+        if(i % j == 0):
+            cnt += 1
+    if(cnt == 1):
+        result.append(i)
+for i in result:
+    print(i)
+
+정답
+def prime(num):
+    if num == 1: return False
+    n = int(num ** 0.5)
+    for i in range(2,n+1):
+        if num % i == 0: return False
+    return True
+
+a, b = map(int, input().split())
+for i in range(a , b+1):
+
+    if prime(i) : print(i)
+
+
+4948번
+내가 한거
+def abc(a):
+    result = 0
+    for i in range(a + 1, 2 * a + 1):
+        cnt = 0
+        if (i == 1):
+            continue
+        for j in range(2, i + 1):
+            if(i % j == 0):
+                cnt += 1
+        if(cnt == 1):
+            result += 1
+    return(result)
+
+while 1:
+    a = int(input())
+    if a == 0:
+        break
+    s = abc(a)
+    print(s)
+
+답
+import math
+
+def prime(a):
+    sieve = [True] * a
+    m = int(math.sqrt(a))
+    for i in range(2, m + 1):
+        if sieve[i] == True:
+            for j in range(i + i, a, i):
+                sieve[j] = False
+    return [i for i in range(2, a) if sieve[i] == True]
+
+
+while True:
+    a = int(input())
+    if a == 0: break
+    s = prime(2 * a + 1)
+    print(len([i for i in s if i > a]))
+
+9020번
+
+import sys
+N = 10001
+sieve = [True] * N
+def prime_sieve(N):
+    for i in range(2, N):
+        if sieve[i]:
+            for j in range(2*i, N, i):
+                sieve[j] = False
+prime_sieve(N)
+
+T = int(sys.stdin.readline())
+for _ in range(T):
+    n = int(sys.stdin.readline())
+    idx = 0
+    while True:
+        if sieve[n//2 - idx] and sieve[n//2 + idx]:
+            print(n//2 - idx, n//2 + idx)
+            break
+        idx += 1
+
+1085번
+x, y, w, h = list(map(int, input().split()))
+print(min([x, y, w - x, h - y]))
+
+3009번
+x_ = []
+y_ = []
+for i in range(3):
+        x, y = map(int, input().split())
+        x_.append(x)
+        y_.append(y)
+for i in range(3):
+        if x_.count(x_[i]) == 1:
+                x = x_[i]
+        if y_.count(y_[i]) == 1:
+                y = y_[i]
+print(x, y)
+
+규칙: x에 같은 숫자 2개 y에 같은 숫자 2개가 있어야 한다. 따라서 리스트로 추가하고 
+       갯수가 1개인 숫자를 찾는다.
+
+4153번
+내가 푼거
+while True:
+    x, y, z = map(int, input().split())
+    if x == y == z == 0:
+        break
+    if x**2 + y**2 == z**2:
+        print("right")
+    else:
+        print("wrong")
+답
+while True:
+        a = list(map(int, input().split()))
+        max_num = max(a)
+        if sum(a) == 0:
+                break
+        a.remove(max_num)
+        if a[0] ** 2 + a[1] ** 2 == max_num ** 2:
+                print('right')
+        else:
+                print('wrong')
