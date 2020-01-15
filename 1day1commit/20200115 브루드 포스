@@ -1,0 +1,71 @@
+2798번
+
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
+b = len(a)
+sum = 0
+for i in range(0, b - 2):
+    for j in range(i + 1, b):
+        for k in range(j + 1, b):
+
+            if a[i] + a[j] + a[k] > m:
+                continue
+            else:
+                sum = max(sum, a[i] + a[j] + a[k])
+print(sum)
+
+2231번
+n = int(input())
+print_num = 0
+for i in range(1, n+1):
+    div_num = list(map(int, str(i)))              => 123을 넣으면 [1, 2, 3]으로 바뀜
+    sum_num = i + sum(div_num)
+    if(sum_num == n):
+        print_num = i
+        break
+print(print_num)
+
+7568번
+n = int(input())
+student_list = []
+for _ in range(n):
+    a, b = map(int, input().split())
+    student_list.append((a, b))
+
+for i in student_list:
+    rank = 1
+    for j in student_list:
+        if i[0] < j[0] and i[1] < j[1]:
+            rank += 1
+    print(rank, end = " ")
+
+7568번
+n = int(input())
+student_list = []
+for _ in range(n):
+    a, b = map(int, input().split())
+    student_list.append((a, b))
+
+for i in student_list:
+    rank = 1
+    for j in student_list:
+        if i[0] < j[0] and i[1] < j[1]:
+            rank += 1
+    print(rank, end = " ")
+
+몰랐던 부분: i = [1,2]이면 i[0]은 1
+for i in student_list:
+    rank = 1
+    for j in student_list:
+        if i[0] < j[0] and i[1] < j[1]:
+
+1436번
+n = int(input())
+movie = 666
+
+while n:
+    if "666" in str(movie):
+        n -= 1
+    movie += 1
+
+print(movie - 1)
