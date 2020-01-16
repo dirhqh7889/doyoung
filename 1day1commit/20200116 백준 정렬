@@ -1,0 +1,113 @@
+2750번
+수 정렬하기
+
+n = int(input())
+a = []
+for _ in range(n):
+    b = int(input())
+    a.append(b)
+    a.sort()
+for i in range(n):
+    print(a[i])
+
+2751번
+import sys
+
+n = int(input())
+odd = [] #홀수의 경우
+notodd = [] #짝수의 경우
+
+for i in range(n):
+    sample = int(sys.stdin.readline())
+    if sample%2 == 0:
+        notodd.append(sample)
+    else:
+        odd.append(sample)
+
+odd.sort(reverse=True) #내림차순
+notodd.sort(reverse=True)
+
+try:
+    for i in range(n):
+        if odd[-1] < notodd[-1]:
+            print(odd.pop())
+        else:
+            print(notodd.pop())
+except: #한 리스트가 비게되어 IndexError가 나는 경우
+    if len(odd) == 0:
+        for i in range(len(notodd)):
+            print(notodd.pop())
+    else:
+        for i in range(len(odd)):
+            print(odd.pop())
+
+10989번
+import sys
+N = int(input())
+cnt_list = [0] * 10001
+
+for i in range(N):
+    cnt_list[int(input())] += 1
+
+for i in range(10001):
+    sys.stdout.write('%s\n' % i * cnt_list[i])
+
+**10001로 미리 배열의 크기를 지정해두고, 그 외에 값을 저장하지 않는다.
+
+
+2108번
+
+import sys
+from collections import Counter
+
+n = int(sys.stdin.readline())
+result = []
+for _ in range(n):
+    result.append(int(sys.stdin.readline()))
+
+
+def mean(nums):
+    return round(sum(nums) / n)
+
+
+def median(nums):
+    nums.sort()
+    mid = nums[n // 2]
+    return mid
+
+
+def mode(nums):
+    mode_dict = Counter(nums)
+    modes = mode_dict.most_common()
+
+    if len(nums) > 1:
+        if modes[0][1] == modes[1][1]:
+            mod = modes[1][0]
+        else:
+            mod = modes[0][0]
+    else:
+        mod = modes[0][0]
+
+    return mod
+
+
+def scope(nums):
+    return max(nums) - min(nums)
+
+
+print(mean(result))
+print(median(result))
+print(mode(result))
+print(scope(result))
+
+1427번
+
+str_list = input()
+num_list = list()
+for i in str_list:
+    num_list.append(int(i))
+num_list = reversed(sorted(num_list))
+res = ''
+for i in num_list:
+    res += str(i)
+print(res)
