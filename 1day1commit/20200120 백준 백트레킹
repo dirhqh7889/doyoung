@@ -1,0 +1,69 @@
+15649번
+
+import itertools
+
+n, m = map(int, input().split())
+num_list = [i for i in range(1, n + 1)]
+
+for num in itertools.permutations(num_list, m):
+    for i in num:
+        print(i, end=' ')
+    print(end='\n')
+
+*itertools 모듈은 반복 가능한 데이터 스트림을 처리하는데 유용한 함수와 제네레이터가 포함
+ itertools.permutations은 순열을 구하는 것이다.
+ itertools.permutaitions(num_list, m)  m은 몇개의 아이템을 조합할지 결정하는 인자이다.
+
+15650번
+
+import itertools
+
+n, m = map(int, input().split())
+num_list = [i for i in range(1, n + 1)]
+
+for num in itertools.combinations(num_list, m):
+    for i in num:
+        print(i, end=' ')
+    print(end='\n')
+
+*permutations을 combinations으로 바꾼다.
+ combinations은 조합을 구하는 것이다.
+ 따라서 이미 (1, 2)는 이미 구해져 있기 때문에 (2, 1)은 나오지 않는다.
+
+15651번
+
+import itertools
+
+n, m = map(int, input().split())
+num_list = [i for i in range(1, n + 1)]
+
+for num in itertools.product(num_list, repeat=m):
+    for i in num:
+        print(i, end=' ')
+    print(end='\n')
+
+*같은 부분을 product로 바꾼다.
+ product는 곱집합을 구하는 것이고 (4, 4)와 같이 같은 수도 구해진다.
+
+15652번
+
+import itertools
+
+N, M = map(int, input().split())
+num_list = [i for i in range(1, N+1)]
+    
+for num in itertools.combinations_with_replacement(num_list, M):
+    for i in num:
+        print(i, end = ' ')
+    print(end = '\n')
+
+*같은 부분을 combinations_with_replacement 로 바꾼다.
+ 
+
+
+***
+반복자                                         인수             결과
+product()                                  p,q...[반복=1]   중첩된 for loop에 해당하느느 데카르트의 곱
+permutations()                            p[,r]               r 길이 tuple, 가능한 모든 순서, 반복 x
+combinations()                            p, r               r 길이 tuple, 정렬된 순서, 반복x
+combinations_with_replacement()     p, r                r 길이 tuple, 정렬된 순서,  반복o
