@@ -1,0 +1,140 @@
+9663번
+
+def promising(i):
+    for j in range(0, i):
+        # 새로운 퀸과 기존의 퀸이 같은 행에 있거나 대각선에 있을 경우
+        if row[j] == row[i] or abs(row[j] - row[i]) == (i - j):
+            return False
+    return True
+
+
+def N_queen(i):
+    global result
+    if i == N:
+        result += 1
+    else:
+        for j in range(N):
+            row[i] = j
+            if promising(i):
+                N_queen(i + 1)
+
+
+N = int(input())
+row = [0] * 15
+result = 0
+N_queen(0)
+print(result)
+
+2580번
+
+import sys
+
+sdk = [list(map(int, input().split())) for _ in range(9)]
+zeros = [(i, j) for i in range(9) for j in range(9) if sdk[i][j] == 0]
+
+
+def sdoku(index):
+    # 한 바퀴에서 모든 경우를 다 보았으면 출력
+    if index == len(zeros):
+        for row in sdk:
+            print(*row)
+        sys.exit(0)
+    else:
+        x = zeros[index][0]
+        y = zeros[index][1]
+        dx = (x // 3) * 3
+        dy = (y // 3) * 3
+
+        # 사용할 수 있는 숫자 9개
+        num_list = [False] + [True for _ in range(9)]
+
+        for j in range(9):
+            # 가로 검사
+            # 세로 검사
+            if (sdk[x][j]):
+                num_list[sdk[x][j]] = False
+            if (sdk[j][y]):
+                num_list[sdk[j][y]] = False
+
+        # 3*3 box 검사
+        for i in range(dx, dx + 3):
+            for j in range(dy, dy + 3):
+                check_num = sdk[i][j]
+                if (check_num):
+                    num_list[check_num] = False
+
+        # 현재 가능한 수만 가져옴
+        # 가능한 수를 가져왔으면, 이전에 다뤄왔던 백트래킹을 사용하면 됨
+        candidate_list = [i for i, k in enumerate(num_list) if k]
+
+        # 경우의 수 고려
+        for num in candidate_list:
+            sdk[x][y] = num
+            sdoku(index + 1)
+            sdk[x][y] = 0
+
+
+sdoku(0)
+ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ백트레킹 못해먹겠어서 포기
+동적 계획법 1 
+2748번
+내가한것(시간 초과)
+n = int(input())
+def fibonacci(n):
+    if n<2:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+
+답
+
+N = int(input())
+
+def fibonach(f_1, f_2, cnt):
+    f_n = f_1 + f_2
+
+    if(cnt == 0):
+        return f_n
+    else:
+        return fibonach(f_2, f_n, cnt - 1)
+    
+if(N == 0):
+    print(0)
+elif(N == 1):
+    print(1)
+else:
+    print(fibonach(0, 1, N - 2))
+**
+입력이 3이 된다면
+cnt가 1이 되고 0+1이 fn이 되고
+fibonacci(1,1,0)이 된다.
+
+1003번
+
+C = int(input())
+zero = [1, 0, 1]
+one = [0, 1, 1]
+
+
+def one_two_count(n):
+    init_len = len(zero)
+    if (init_len <= n):
+        for i in range(init_len, n + 1):
+            add_0 = zero[i - 2] + zero[i - 1]
+            add_1 = one[i - 2] + one[i - 1]
+            zero.append(add_0);
+            one.append(add_1)
+    print('{} {}'.format(zero[n], one[n]))
+
+
+for _ in range(C):
+    one_two_count(int(input()))
+
+****
+입력이 0이면
+fib(0) 한번 호출 해서 1 0 
+입력이 1이면
+fib(1) 한번 호출 해서 0 1
+입력이 3이면
+fib(3) = fib(2) + fib(1)
+fib(2) = fib(1) + fib(0)
+따라서 1두번 0한번  1 2
