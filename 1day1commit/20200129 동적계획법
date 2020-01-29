@@ -1,0 +1,86 @@
+1932번
+
+n = int(input())
+t = []
+for i in range(n):
+    t.append(list(map(int, input().split())))
+k = 2
+for i in range(1, n):
+    for j in range(k):
+        if j == 0:
+            t[i][j] = t[i][j] + t[i - 1][j]
+        elif i == j:
+            t[i][j] = t[i][j] + t[i - 1][j - 1]
+        else:
+            t[i][j] = max(t[i - 1][j - 1], t[i - 1][j]) + t[i][j]
+    k += 1
+print(max(t[n - 1]))
+         
+해답 분석)
+for i in range(n):
+    t.append(list(map(int, input().split())))
+이 코드는 입력된 
+7
+3 8
+8 1 0
+2 7 4 4
+4 5 2 6 5
+을 리스트 [[7], [3, 8], [8, 1, 0], [2, 7, 4, 4], [4, 5, 2, 6, 5]]로 입력해준다.
+
+그리고
+for i in range(1, n):
+    for j in range(k):
+        if j == 0:
+            t[i][j] = t[i][j] + t[i - 1][j]
+        elif i == j:
+            t[i][j] = t[i][j] + t[i - 1][j - 1]
+        else:
+            t[i][j] = max(t[i - 1][j - 1], t[i - 1][j]) + t[i][j]
+    k += 1
+이 코드에서 
+처음에 i는 1부터 시작이고 j는 k가 2이므로 0, 1에 해당한다
+그래서 s[1][0] s[1][1]가 생성되고
+        if j == 0:
+            t[i][j] = t[i][j] + t[i - 1][j]
+s[1][0]은 이 부분에서 s[0][0]과 더하고
+        elif i == j:
+            t[i][j] = t[i][j] + t[i - 1][j - 1]
+s[1][1]은 이 부분에서 s[0][0]과 더한다.
+        else:
+            t[i][j] = max(t[i - 1][j - 1], t[i - 1][j]) + t[i][j]
+이 부분은 값이 계속 많아질 때 가운데 부분 중 큰 수를 구하는 코드이다.
+예를 들어  max(s[2][1] + s[1][0]+s[0][0], s[2][1] + s[1][1] + s[0][0]) 이렇게 입력이 되어 
+더 큰 수를 찾는다.
+리스트는 계속 저장되어가며 바뀌어가고 마지막에는 print(max(t[n - 1])) 이 코드로 제일 큰수를 출력한다.
+
+
+2579번
+N = int(input())
+stair_score = [int(input()) for _ in range(N)]
+dp = []
+
+dp.append(stair_score[0])               
+dp.append(dp[0] + stair_score[1])
+dp.append(max(dp[0] + stair_score[2], stair_score[1] + stair_score[2]))
+
+for i in range(3, N):
+    dp.append(max(stair_score[i] + stair_score[i - 1] + dp[i - 3], stair_score[i] + dp[i - 2]))
+print(dp[-1])
+
+해답 분석)
+dp.append(stair_score[0]) 
+첫번째 칸
+dp.append(dp[0] + stair_score[1])
+첫칸 + 다음 칸
+dp.append(max(dp[0] + stair_score[2], stair_score[1] + stair_score[2]))
+max(시작 위치 + 1칸 + 2칸, 2칸 + 1칸) 
+여기서 dp[0] = 시작 위치 + 1칸
+
+for i in range(3, N):
+    dp.append(max(stair_score[i] + stair_score[i - 1] + dp[i - 3], stair_score[i] + dp[i - 2]))
+
+stair_score[i] + stair_score[i - 1] + dp[i - 3]
+현재 위치에서 전칸을 밟아 올라온 경우 + 전전칸을 밟은 경우의 최댓박
+stair_score[i] + dp[i - 2] 
+현재 위치 + 전전칸에서 올라온 경우
+
