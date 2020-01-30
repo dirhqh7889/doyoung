@@ -1,0 +1,74 @@
+1463번
+처음 한 코드
+a = int(input())
+count = 0
+
+while True:
+    if a == 1:        
+        break
+    if a % 3 == 0:
+        a = a / 3
+    elif a % 2 == 0:
+        a = a / 2
+    else:
+        a = a - 1
+    count = count + 1
+print(count)
+
+틀린 이유)
+10을 입력했을 때 4가 나옴
+10 -> 5 -> 4 -> 2 -> 1이 되기 때문
+10을 1부터 뺀다면
+10 -> 9 -> 3 -> 1 
+3이 나온다.
+따라서 리스트에 3가지 연산을 다 수행하는 것으로 해서
+제일 작은 수행 횟수를 출력하는 것이 베스트 
+따라서
+X = int(input())
+
+dp = [X]
+cnt = 0
+
+while(True):
+    if(1 in dp):
+        print(cnt)
+        break
+    calc = []
+    for i in dp:
+        if(i % 2 == 0):
+            calc.append(i / 2)
+        if(i % 3 == 0):
+            calc.append(i / 3)
+        calc.append(i - 1)
+    dp = calc
+
+    cnt += 1
+
+2156번
+n = int(input())
+wine_list = [int(input()) for x in range(n)]
+
+dp = [0]
+dp.append(wine_list[0])
+if(n > 1):
+    dp.append(wine_list[0] + wine_list[1])
+for i in range(3, n + 1):
+    case_1 = wine_list[i - 1] + dp[i - 2]
+    case_2 = wine_list[i - 1] + wine_list[i - 2] + dp[i - 3]
+    case_3 = dp[i - 1]
+    max_value = max(case_1, case_2, case_3)
+
+    dp.append(max_value)
+
+print(dp[n])
+
+해설)
+for i in range(3, n + 1):
+    case_1 = wine_list[i - 1] + dp[i - 2]
+    이번 포도주를 먹고 이전 포도주를 먹지 않은 경우
+    case_2 = wine_list[i - 1] + wine_list[i - 2] + dp[i - 3]
+    이번 포도주를 먹고 이전 포도주를 먹은 경우
+    case_3 = dp[i - 1]
+    이번 포도주를 먹지 않아야 하는 경우
+    max_value = max(case_1, case_2, case_3)
+    세가지 경우를 고려하여 제일 큰 수 구하기
